@@ -18,7 +18,8 @@ const Feed = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch("/api/prompt");
+      const cacheBuster = new Date().getTime();
+      const response = await fetch(`/api/prompt?cacheBuster=${cacheBuster}`);
       const data = await response.json();
 
       setPosts(data);
